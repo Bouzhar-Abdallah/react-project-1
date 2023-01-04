@@ -1,13 +1,12 @@
 import React from 'react';
-import Hello from './hello';
-function app() {
-     
-  return (
-      <div>
-        <h1>hello react</h1>
-        <Hello />
-    </div>
-  )
+
+function App() {
+
+    return (
+        <div className='bg-red-400'>
+            <h1>hello react</h1>
+        </div>
+    );
 }
 
-export default app;
+export default App;
