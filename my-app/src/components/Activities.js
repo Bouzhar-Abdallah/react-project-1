@@ -18,7 +18,7 @@ function Activities() {
     return (
         <div>
             <h1>{activity}</h1>
-            <button>Load Another</button>
+            <button onClick={loadActivity} >Load Another</button>
         </div>
     );
 
