@@ -1,12 +1,14 @@
 import React from 'react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import ClubRank from './components/ClubRank';
 
+const league_id = 239
 const APIkey = 'APIkey=a7e05160774b596bc82317bf9e218160ded2eaccd2870e3a7e7e502adbf792e7'
 const baseURL = 'https://apiv3.apifootball.com/?'
-const action = '&action=get_standings&league_id=152'
+const action = `&action=get_standings&league_id=${league_id}`
 const query = baseURL + APIkey + action
 
-const club = {
+const clubx = {
     "country_name": "England",
     "league_id": "152",
     "league_name": "Premier League",
@@ -47,10 +49,13 @@ const club = {
 
 function App() {
 
+    const [clubs,setClubs] = useState([])
+
     const getData = async () => {
         const response = await fetch(query)
         const data = await response.json()
-        console.log(data)
+        setClubs(data);
+        //console.log(data)
     }
 
     useEffect(() => {
@@ -58,40 +63,25 @@ function App() {
     }, [])
     return (
         <>
-            <div className='bg-red-200 w-96'>
-                <div className='h-10 flex items-center border'>
-                    <span>club</span>
-                    <span className='' >MJ</span>
-                    <span className='w-10' >V</span>
-                    <span className='w-10' >N</span>
-                    <span className='w-10' >D</span>
+            <div className='w-96'>
+                <div className='h-10 flex items-center justify-between divide-x'>
+                    <span className='w-1/2 text-center'>Club</span>
+                    <div className='flex divide-x'>
+                        <h1 className='w-8 text-center' >Pts</h1>
+                        <h1 className='w-8 text-center' >MJ</h1>
+                        <h1 className='w-8 text-center' >V</h1>
+                        <h1 className='w-8 text-center' >N</h1>
+                        <h1 className='w-8 text-center' >D</h1>
+                    </div>
 
                 </div>
-                <button value={club.team_key} className='flex items-center w-full'>
-                    <div className='flex w-full'>
+                {
+                    clubs.map((club)=>(
 
-                        <img className='p-1 w-10 h-10' src={club.team_badge} alt="" />
-
-                        <div className='h-10 w-auto pl-3 flex items-center'>
-                            <h1><span>{club.overall_league_position}</span> - {club.team_name}</h1>
-                        </div>
-                    </div>
-                    <div className='h-10  flex items-center justify-center '>
-                        <h1 className='w-8'>{club.overall_league_PTS}</h1>
-                    </div>
-                    <div className='h-10  flex items-center justify-center '>
-                        <h1 className='w-8'>{club.overall_league_payed}</h1>
-                    </div>
-                    <div className='h-10  flex items-center justify-center '>
-                        <h1 className='w-8' >{club.overall_league_W}</h1>
-                    </div>
-                    <div className='h-10  flex items-center justify-center '>
-                        <h1 className='w-8'>{club.overall_league_D}</h1>
-                    </div>
-                    <div className='h-10  flex items-center justify-center '>
-                        <h1 className='w-8'>{club.overall_league_L}</h1>
-                    </div>
-                </button >
+                        <ClubRank club={club}/>
+                    ))
+                }
+                
             </div>
         </>
     )
