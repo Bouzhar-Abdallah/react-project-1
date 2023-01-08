@@ -28,6 +28,7 @@ const ClubRank = ({club}) => {
                 <h1 className='w-8'>{club.overall_league_L}</h1>
             </div>
         </button >
+        
     )
 }
 

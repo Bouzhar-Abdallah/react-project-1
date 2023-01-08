@@ -11,8 +11,8 @@ function App() {
     }
     return (
         <>
-            <select onChange={handleLeagueSelector} name="league_id" id="league_id">
-                <option selected value="152">england</option>
+            <select defaultValue={152} onChange={handleLeagueSelector} name="league_id" id="league_id">
+                <option value="152">england</option>
                 <option value="302">spain</option>
                 <option value="207">italy</option>
                 <option value="175">germany</option>
@@ -24,7 +24,6 @@ function App() {
                 <option value="63 ">Super League</option>
             </select>
             {
-                console.log("h") 
     }
             <LeagueRanking league={league} />
         </>

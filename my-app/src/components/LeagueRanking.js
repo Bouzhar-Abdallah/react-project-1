@@ -43,7 +43,7 @@ const LeagueRanking = ({league}) => {
                 {
                     clubs.map((club)=>(
 
-                        <ClubRank club={club}/>
+                        <ClubRank key={club.team_id} club={club}/>
                     ))
                 }
                 
