@@ -1,17 +1,19 @@
 import React from 'react';
 import { useState } from 'react';
+import LeagueFixtures from './components/LeagueFixtures';
 import LeagueRanking from './components/LeagueRanking';
 
 
 
 function App() {
-    const [league, setleague] = useState([152])
+    const [league, setleague] = useState([149])
     const handleLeagueSelector = (e) => {
         setleague(e.target.value)
     }
     return (
         <>
-            <select defaultValue={152} onChange={handleLeagueSelector} name="league_id" id="league_id">
+            <select defaultValue={149} onChange={handleLeagueSelector} name="league_id" id="league_id">
+                <option value="149">some england</option>
                 <option value="152">england</option>
                 <option value="302">spain</option>
                 <option value="207">italy</option>
@@ -25,7 +27,11 @@ function App() {
             </select>
             {
     }
+    <div className='flex'>
+
             <LeagueRanking league={league} />
+            <LeagueFixtures league={league}/>
+    </div>
         </>
     )
 }
